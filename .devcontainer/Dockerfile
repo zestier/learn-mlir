@@ -1,9 +1,5 @@
 FROM ubuntu
 
-# Add in zsh because I like it better
-RUN apt-get update && apt-get -y install zsh
-RUN chsh -s `which zsh`
-
 # Throw in some coding tools
 RUN apt-get update && apt-get -y install git cmake ninja-build
 
@@ -21,5 +17,10 @@ RUN cmake -G Ninja -B $LLVM_BUILD_DIR $LLVM_SOURCE_DIR/llvm                     
    -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DLLVM_ENABLE_LLD=ON    \
    -DLLVM_INSTALL_UTILS=ON
 RUN cmake --build $LLVM_BUILD_DIR --target check-mlir install
+
+# Add in zsh because I like it better
+RUN apt-get update && apt-get -y install zsh
+RUN echo "PROMPT='%~%# '" >> ~/.zshrc
+RUN chsh -s `which zsh`
 
 CMD ["zsh"]
