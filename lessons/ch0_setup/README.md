@@ -1,5 +1,7 @@
 # An out-of-tree MLIR dialect
 
+This specific chapter does not do anything special. It is just showing output of the standalone setup scripts.
+
 This is an example of an out-of-tree [MLIR](https://mlir.llvm.org/) dialect along with a ch0 `opt`-like tool to operate on that dialect.
 
 ## Building
