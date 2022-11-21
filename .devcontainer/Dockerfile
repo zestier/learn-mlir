@@ -3,10 +3,14 @@ FROM ubuntu
 # Throw in some coding tools. Clang and Ninja supposedly build fastest
 RUN apt-get update && apt-get -y install git cmake clang lld lldb ninja-build
 
-# Get the code for MLIR
+# Prepare the environment for the pull
 ENV LLVM_SOURCE_DIR=/usr/local/src/llvm-project
 ENV LLVM_BUILD_DIR=/usr/local/src/llvm-project/build
-RUN git clone --depth 1 https://github.com/llvm/llvm-project.git $LLVM_SOURCE_DIR
+
+# Get the code for MLIR. Additionally destroy the .git folder to save space.
+RUN                                                                              \
+   git clone --depth 1 https://github.com/llvm/llvm-project.git $LLVM_SOURCE_DIR \
+   && rm -rf $LLVM_SOURCE_DIR/.git
 
 # Build, install, and then delete unused files. Done in one step to avoid inflating cached images.
 RUN                                                                                                \
@@ -16,7 +20,7 @@ RUN                                                                             
       -B $LLVM_BUILD_DIR                                                                           \
       -DLLVM_ENABLE_PROJECTS="llvm;mlir"                                                           \
       -DLLVM_TARGETS_TO_BUILD="host"                                                               \
-      -DCMAKE_BUILD_TYPE=RelWithDebInfo                                                            \
+      -DCMAKE_BUILD_TYPE=Release                                                                   \
       -DLLVM_ENABLE_ASSERTIONS=ON                                                                  \
       -DCMAKE_C_COMPILER=clang                                                                     \
       -DCMAKE_CXX_COMPILER=clang++ -DLLVM_ENABLE_LLD=ON                                            \
@@ -25,7 +29,7 @@ RUN                                                                             
       --build $LLVM_BUILD_DIR                                                                      \
       --target install                                                                             \
    && find $LLVM_BUILD_DIR -type f -not \( -name 'llvm-lit' -or -name 'lit.site.cfg*' \) -delete   \
-   && find $LLVM_SOURCE_DIR -type d -empty -delete
+   && find $LLVM_BUILD_DIR -type d -empty -delete
 
 # Add in zsh because I like it better
 RUN apt-get update && apt-get -y install zsh
