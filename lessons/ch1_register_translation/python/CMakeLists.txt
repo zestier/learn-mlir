@@ -40,6 +40,9 @@ add_mlir_python_common_capi_library(Ch1PythonCAPI
   RELATIVE_INSTALL_ROOT "../../../.."
   DECLARED_SOURCES
     Ch1PythonSources
+    # TODO: Remove this in favor of showing fine grained registration once
+    # available.
+    MLIRPythonExtension.RegisterEverything
     MLIRPythonSources.Core
 )
 
@@ -52,6 +55,9 @@ add_mlir_python_modules(Ch1PythonModules
   INSTALL_PREFIX "python_packages/ch1/mlir_ch1"
   DECLARED_SOURCES
     Ch1PythonSources
+    # TODO: Remove this in favor of showing fine grained registration once
+    # available.
+    MLIRPythonExtension.RegisterEverything
     MLIRPythonSources
   COMMON_CAPI_LINK_LIBS
     Ch1PythonCAPI

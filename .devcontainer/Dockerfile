@@ -1,10 +1,7 @@
 FROM ubuntu
 
-# Throw in some coding tools
-RUN apt-get update && apt-get -y install git cmake ninja-build
-
-# Preinstall Clang and such because it supposedly builds MLIR faster
-RUN apt-get update && apt-get -y install clang lld lldb
+# Throw in some coding tools. Clang and Ninja supposedly build fastest
+RUN apt-get update && apt-get -y install git cmake clang lld lldb ninja-build
 
 # Get the code for MLIR
 ENV LLVM_SOURCE_DIR=/usr/local/src/llvm-project
@@ -18,6 +15,7 @@ RUN                                                                             
       -G Ninja                                                                                     \
       -B $LLVM_BUILD_DIR                                                                           \
       -DLLVM_ENABLE_PROJECTS="llvm;mlir"                                                           \
+      -DLLVM_TARGETS_TO_BUILD="host"                                                               \
       -DCMAKE_BUILD_TYPE=RelWithDebInfo                                                            \
       -DLLVM_ENABLE_ASSERTIONS=ON                                                                  \
       -DCMAKE_C_COMPILER=clang                                                                     \

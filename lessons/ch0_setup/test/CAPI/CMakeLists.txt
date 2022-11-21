@@ -6,7 +6,9 @@ add_mlir_aggregate(Ch0CAPITestLib
   SHARED
   EMBED_LIBS
   MLIRCAPIIR
-  MLIRCAPIRegistration
+  # TODO: Remove this in favor of showing fine grained dialect registration
+  # (once available).
+  MLIRCAPIRegisterEverything
   Ch0CAPI
 )
 

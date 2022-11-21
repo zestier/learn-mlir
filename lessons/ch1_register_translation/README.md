@@ -1,7 +1,5 @@
 # An out-of-tree MLIR dialect
 
-This example will show how to register a basic translation. It will do nearly nothing aside from providing the scaffolding. See ch1-translate.
-
 This is an example of an out-of-tree [MLIR](https://mlir.llvm.org/) dialect along with a ch1 `opt`-like tool to operate on that dialect.
 
 ## Building

@@ -9,7 +9,7 @@
 #ifndef CH1_C_DIALECTS_H
 #define CH1_C_DIALECTS_H
 
-#include "mlir-c/Registration.h"
+#include "mlir-c/IR.h"
 
 #ifdef __cplusplus
 extern "C" {
