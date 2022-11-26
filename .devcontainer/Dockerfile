@@ -7,7 +7,7 @@ RUN apt-get update && apt-get -y install cmake git wget clang lld lldb ninja-bui
 ENV LLVM_SOURCE_DIR=/llvm-project
 ENV LLVM_BUILD_DIR=/llvm-project/build
 
-# Get the code for MLIR. Additionally destroy the .git folder to save space.
+# Fix the relevant code. Pulling a tagged tar just happens to be fast and stable.
 RUN                                                                                                \
    wget -c https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-15.0.5.tar.gz -O -       \
    | tar -xz --one-top-level=$LLVM_SOURCE_DIR --strip-components=1
