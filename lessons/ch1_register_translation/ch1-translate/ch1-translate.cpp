@@ -43,7 +43,7 @@ namespace {
 
   void registerFromCh1Translation() {
     mlir::TranslateToMLIRRegistration fromCh1(
-      "import-ch1", "imports ch1 example", [](llvm::SourceMgr& sourceMgr, mlir::MLIRContext* context) {
+      "import-ch1", [](llvm::SourceMgr& sourceMgr, mlir::MLIRContext* context) {
         return translateToModule(sourceMgr, context);
       }
     );

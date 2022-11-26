@@ -16,9 +16,9 @@ PYBIND11_MODULE(_ch0Dialects, m) {
   //===--------------------------------------------------------------------===//
   // ch0 dialect
   //===--------------------------------------------------------------------===//
-  auto ch0M = m.def_submodule("ch0");
+  auto ch0_m = m.def_submodule("ch0");
 
-  ch0M.def(
+  ch0_m.def(
       "register_dialect",
       [](MlirContext context, bool load) {
         MlirDialectHandle handle = mlirGetDialectHandle__ch0__();

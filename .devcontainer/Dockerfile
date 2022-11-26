@@ -1,16 +1,16 @@
 FROM ubuntu
 
 # Throw in some coding tools. Clang and Ninja supposedly build fastest
-RUN apt-get update && apt-get -y install git cmake clang lld lldb ninja-build
+RUN apt-get update && apt-get -y install cmake git wget clang lld lldb ninja-build
 
 # Prepare the environment for the pull
-ENV LLVM_SOURCE_DIR=/usr/local/src/llvm-project
-ENV LLVM_BUILD_DIR=/usr/local/src/llvm-project/build
+ENV LLVM_SOURCE_DIR=/llvm-project
+ENV LLVM_BUILD_DIR=/llvm-project/build
 
 # Get the code for MLIR. Additionally destroy the .git folder to save space.
-RUN                                                                              \
-   git clone --depth 1 https://github.com/llvm/llvm-project.git $LLVM_SOURCE_DIR \
-   && rm -rf $LLVM_SOURCE_DIR/.git
+RUN                                                                                                \
+   wget -c https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-15.0.5.tar.gz -O -       \
+   | tar -xz --one-top-level=$LLVM_SOURCE_DIR --strip-components=1
 
 # Build, install, and then delete unused files. Done in one step to avoid inflating cached images.
 RUN                                                                                                \
@@ -33,7 +33,6 @@ RUN                                                                             
 
 # Add in zsh because I like it better
 RUN apt-get update && apt-get -y install zsh
-RUN chsh -s `which zsh`
-RUN echo "PROMPT='%~%# '" >> ~/.zshrc
+RUN chsh -s `which zsh` && echo "PROMPT='%~%# '" >> ~/.zshrc
 
 CMD ["zsh"]
