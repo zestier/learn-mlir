@@ -27,7 +27,9 @@
 				"ms-vscode.cmake-tools",
 				"ms-vscode.cpptools-extension-pack",
 				"ms-python.python",
-				"donjayamanne.githistory"
+				"donjayamanne.githistory",
+				"llvm-vs-code-extensions.vscode-mlir",
+				"jakob-erzar.llvm-tablegen"
 			]
 		}
 	},

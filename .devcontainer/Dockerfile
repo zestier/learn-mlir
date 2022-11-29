@@ -1,7 +1,7 @@
 FROM ubuntu
 
 # Throw in some coding tools. Clang and Ninja supposedly build fastest
-RUN apt-get update && apt-get -y install cmake git wget clang lld lldb ninja-build
+RUN apt-get update && apt-get -y install cmake curl git clang lld lldb ninja-build
 
 # Prepare the environment for the pull
 ENV LLVM_SOURCE_DIR=/llvm-project
@@ -9,7 +9,7 @@ ENV LLVM_BUILD_DIR=/llvm-project/build
 
 # Fix the relevant code. Pulling a tagged tar just happens to be fast and stable.
 RUN                                                                                                \
-   wget -c https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-15.0.5.tar.gz -O -       \
+   curl -L https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-15.0.5.tar.gz            \
    | tar -xz --one-top-level=$LLVM_SOURCE_DIR --strip-components=1
 
 # Build, install, and then delete unused files. Done in one step to avoid inflating cached images.
