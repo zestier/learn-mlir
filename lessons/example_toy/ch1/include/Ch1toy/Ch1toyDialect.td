@@ -1,4 +1,4 @@
-//===- Ch0toyDialect.td - Ch0toy dialect -----------*- tablegen -*-===//
+//===- Ch1toyDialect.td - Ch1toy dialect -----------*- tablegen -*-===//
 //
 // This file is licensed under the Apache License v2.0 with LLVM Exceptions.
 // See https://llvm.org/LICENSE.txt for license information.
@@ -6,33 +6,33 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef CH0TOY_DIALECT
-#define CH0TOY_DIALECT
+#ifndef CH1TOY_DIALECT
+#define CH1TOY_DIALECT
 
 include "mlir/IR/OpBase.td"
 
 //===----------------------------------------------------------------------===//
-// Ch0toy dialect definition.
+// Ch1toy dialect definition.
 //===----------------------------------------------------------------------===//
 
-def Ch0toy_Dialect : Dialect {
-    let name = "ch0toy";
-    let summary = "A ch0toy out-of-tree MLIR dialect.";
+def Ch1toy_Dialect : Dialect {
+    let name = "ch1toy";
+    let summary = "A ch1toy out-of-tree MLIR dialect.";
     let description = [{
         This dialect is an example of an out-of-tree MLIR dialect designed to
         illustrate the basic setup required to develop MLIR-based tools without
         working inside of the LLVM source tree.
     }];
-    let cppNamespace = "::mlir::ch0toy";
+    let cppNamespace = "::mlir::ch1toy";
 
   let emitAccessorPrefix = kEmitAccessorPrefix_Prefixed;
 }
 
 //===----------------------------------------------------------------------===//
-// Base ch0toy operation definition.
+// Base ch1toy operation definition.
 //===----------------------------------------------------------------------===//
 
-class Ch0toy_Op<string mnemonic, list<Trait> traits = []> :
-        Op<Ch0toy_Dialect, mnemonic, traits>;
+class Ch1toy_Op<string mnemonic, list<Trait> traits = []> :
+        Op<Ch1toy_Dialect, mnemonic, traits>;
 
-#endif // CH0TOY_DIALECT
+#endif // CH1TOY_DIALECT

@@ -1,4 +1,4 @@
-//===- Ch0toyDialect.cpp - Ch0toy dialect ---------------*- C++ -*-===//
+//===- Ch1toyDialect.cpp - Ch1toy dialect ---------------*- C++ -*-===//
 //
 // This file is licensed under the Apache License v2.0 with LLVM Exceptions.
 // See https://llvm.org/LICENSE.txt for license information.
@@ -6,21 +6,21 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "Ch0toy/Ch0toyDialect.h"
-#include "Ch0toy/Ch0toyOps.h"
+#include "Ch1toy/Ch1toyDialect.h"
+#include "Ch1toy/Ch1toyOps.h"
 
 using namespace mlir;
-using namespace mlir::ch0toy;
+using namespace mlir::ch1toy;
 
-#include "Ch0toy/Ch0toyOpsDialect.cpp.inc"
+#include "Ch1toy/Ch1toyOpsDialect.cpp.inc"
 
 //===----------------------------------------------------------------------===//
-// Ch0toy dialect.
+// Ch1toy dialect.
 //===----------------------------------------------------------------------===//
 
-void Ch0toyDialect::initialize() {
+void Ch1toyDialect::initialize() {
   addOperations<
 #define GET_OP_LIST
-#include "Ch0toy/Ch0toyOps.cpp.inc"
+#include "Ch1toy/Ch1toyOps.cpp.inc"
       >();
 }

@@ -1,4 +1,4 @@
-//===- Ch0toyOps.td - Ch0toy dialect ops -----------*- tablegen -*-===//
+//===- Ch1toyOps.td - Ch1toy dialect ops -----------*- tablegen -*-===//
 //
 // This file is licensed under the Apache License v2.0 with LLVM Exceptions.
 // See https://llvm.org/LICENSE.txt for license information.
@@ -6,18 +6,18 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef CH0TOY_OPS
-#define CH0TOY_OPS
+#ifndef CH1TOY_OPS
+#define CH1TOY_OPS
 
-include "Ch0toy/Ch0toyDialect.td"
+include "Ch1toy/Ch1toyDialect.td"
 include "mlir/Interfaces/InferTypeOpInterface.td"
 include "mlir/Interfaces/SideEffectInterfaces.td"
 
-def Ch0toy_FooOp : Ch0toy_Op<"foo", [NoSideEffect,
+def Ch1toy_FooOp : Ch1toy_Op<"foo", [NoSideEffect,
                                              SameOperandsAndResultType]> {
     let summary = "Illustrates how to define an operation.";
     let description = [{
-        The `ch0toy.foo` operation illustrates how to define a new
+        The `ch1toy.foo` operation illustrates how to define a new
         operation in a dialect. It uses an operation trait to declare that it
         has no side effects.
 
@@ -28,7 +28,7 @@ def Ch0toy_FooOp : Ch0toy_Op<"foo", [NoSideEffect,
         ```mlir
         %0 = arith.constant 2 : i32
         // Apply the foo operation to %0
-        %1 = ch0toy.foo %0 : i32
+        %1 = ch1toy.foo %0 : i32
         ```
     }];
 
@@ -40,4 +40,4 @@ def Ch0toy_FooOp : Ch0toy_Op<"foo", [NoSideEffect,
     }];
 }
 
-#endif // CH0TOY_OPS
+#endif // CH1TOY_OPS

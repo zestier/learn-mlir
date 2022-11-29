@@ -6,8 +6,8 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef CH0TOY_C_DIALECTS_H
-#define CH0TOY_C_DIALECTS_H
+#ifndef CH1TOY_C_DIALECTS_H
+#define CH1TOY_C_DIALECTS_H
 
 #include "mlir-c/IR.h"
 
@@ -15,10 +15,10 @@
 extern "C" {
 #endif
 
-MLIR_DECLARE_CAPI_DIALECT_REGISTRATION(Ch0toy, ch0toy);
+MLIR_DECLARE_CAPI_DIALECT_REGISTRATION(Ch1toy, ch1toy);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif // CH0TOY_C_DIALECTS_H
+#endif // CH1TOY_C_DIALECTS_H

@@ -6,10 +6,10 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "Ch0toy-c/Dialects.h"
+#include "Ch1toy-c/Dialects.h"
 
-#include "Ch0toy/Ch0toyDialect.h"
+#include "Ch1toy/Ch1toyDialect.h"
 #include "mlir/CAPI/Registration.h"
 
-MLIR_DEFINE_CAPI_DIALECT_REGISTRATION(Ch0toy, ch0toy,
-                                      mlir::ch0toy::Ch0toyDialect)
+MLIR_DEFINE_CAPI_DIALECT_REGISTRATION(Ch1toy, ch1toy,
+                                      mlir::ch1toy::Ch1toyDialect)

@@ -5,11 +5,11 @@ set(LLVM_LINK_COMPONENTS
 get_property(dialect_libs GLOBAL PROPERTY MLIR_DIALECT_LIBS)
 get_property(translation_libs GLOBAL PROPERTY MLIR_TRANSLATION_LIBS)
 
-add_llvm_executable(ch0toy
-  ch0toy.cpp
+add_llvm_executable(ch1toy
+  ch1toy.cpp
   )
-llvm_update_compile_flags(ch0toy)
-target_link_libraries(ch0toy
+llvm_update_compile_flags(ch1toy)
+target_link_libraries(ch1toy
   PRIVATE
   ${dialect_libs}
   ${translation_libs}
@@ -21,4 +21,4 @@ target_link_libraries(ch0toy
   MLIRSupport
   )
 
-mlir_check_link_libraries(ch0toy)
+mlir_check_link_libraries(ch1toy)

@@ -1,4 +1,4 @@
-//===- Ch0toyOps.h - Ch0toy dialect ops -----------------*- C++ -*-===//
+//===- Ch1toyOps.h - Ch1toy dialect ops -----------------*- C++ -*-===//
 //
 // This file is licensed under the Apache License v2.0 with LLVM Exceptions.
 // See https://llvm.org/LICENSE.txt for license information.
@@ -6,8 +6,8 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef CH0TOY_CH0TOYOPS_H
-#define CH0TOY_CH0TOYOPS_H
+#ifndef CH1TOY_CH1TOYOPS_H
+#define CH1TOY_CH1TOYOPS_H
 
 #include "mlir/IR/BuiltinTypes.h"
 #include "mlir/IR/Dialect.h"
@@ -16,6 +16,6 @@
 #include "mlir/Interfaces/SideEffectInterfaces.h"
 
 #define GET_OP_CLASSES
-#include "Ch0toy/Ch0toyOps.h.inc"
+#include "Ch1toy/Ch1toyOps.h.inc"
 
-#endif // CH0TOY_CH0TOYOPS_H
+#endif // CH1TOY_CH1TOYOPS_H

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.13.4)
-project(ch0toy-dialect LANGUAGES CXX C)
+project(ch1toy-dialect LANGUAGES CXX C)
 
 set(CMAKE_BUILD_WITH_INSTALL_NAME_DIR ON)
 
@@ -35,4 +35,4 @@ add_definitions(${LLVM_DEFINITIONS})
 
 add_subdirectory(include)
 add_subdirectory(lib)
-add_subdirectory(ch0toy)
+add_subdirectory(ch1toy)
