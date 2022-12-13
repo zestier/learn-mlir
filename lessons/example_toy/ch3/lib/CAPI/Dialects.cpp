@@ -8,7 +8,7 @@
 
 #include "toy-c/Dialects.h"
 
-#include "toy/Ch2ToyDialect.h"
+#include "toy/Ch3ToyDialect.h"
 #include "mlir/CAPI/Registration.h"
 
 MLIR_DEFINE_CAPI_DIALECT_REGISTRATION(Toy, toy,

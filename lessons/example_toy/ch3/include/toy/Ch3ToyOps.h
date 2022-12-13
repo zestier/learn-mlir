@@ -1,4 +1,4 @@
-//===- Ch2toyOps.h - Ch2toy dialect ops -----------------*- C++ -*-===//
+//===- Ch3toyOps.h - Ch3toy dialect ops -----------------*- C++ -*-===//
 //
 // This file is licensed under the Apache License v2.0 with LLVM Exceptions.
 // See https://llvm.org/LICENSE.txt for license information.
@@ -15,6 +15,6 @@
 #include "mlir/Interfaces/SideEffectInterfaces.h"
 
 #define GET_OP_CLASSES
-#include "toy/ToyOps.h.inc"
+#include "toy/Ch3ToyOps.h.inc"
 
 #endif // TOY_TOYOPS_H

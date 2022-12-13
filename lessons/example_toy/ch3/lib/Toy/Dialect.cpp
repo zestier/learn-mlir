@@ -11,7 +11,8 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "toy/Ch2ToyOps.h"
+#include "toy/Ch3ToyDialect.h"
+#include "toy/Ch3ToyOps.h"
 
 #include "mlir/IR/Builders.h"
 #include "mlir/IR/BuiltinTypes.h"
@@ -161,19 +162,6 @@ mlir::ParseResult AddOp::parse(mlir::OpAsmParser &parser,
 void AddOp::print(mlir::OpAsmPrinter &p) { printBinaryOp(p, *this); }
 
 //===----------------------------------------------------------------------===//
-// GenericCallOp
-//===----------------------------------------------------------------------===//
-
-void GenericCallOp::build(mlir::OpBuilder &builder, mlir::OperationState &state,
-                          StringRef callee, ArrayRef<mlir::Value> arguments) {
-  // Generic call always returns an unranked Tensor initially.
-  state.addTypes(UnrankedTensorType::get(builder.getF64Type()));
-  state.addOperands(arguments);
-  state.addAttribute("callee",
-                     mlir::SymbolRefAttr::get(builder.getContext(), callee));
-}
-
-//===----------------------------------------------------------------------===//
 // FuncOp
 //===----------------------------------------------------------------------===//
 
@@ -204,6 +192,19 @@ void FuncOp::print(mlir::OpAsmPrinter &p) {
   // function operation.
   mlir::function_interface_impl::printFunctionOp(p, *this,
                                                  /*isVariadic=*/false);
+}
+
+//===----------------------------------------------------------------------===//
+// GenericCallOp
+//===----------------------------------------------------------------------===//
+
+void GenericCallOp::build(mlir::OpBuilder &builder, mlir::OperationState &state,
+                          StringRef callee, ArrayRef<mlir::Value> arguments) {
+  // Generic call always returns an unranked Tensor initially.
+  state.addTypes(UnrankedTensorType::get(builder.getF64Type()));
+  state.addOperands(arguments);
+  state.addAttribute("callee",
+                     mlir::SymbolRefAttr::get(builder.getContext(), callee));
 }
 
 //===----------------------------------------------------------------------===//

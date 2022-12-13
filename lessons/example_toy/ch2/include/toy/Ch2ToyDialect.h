@@ -1,4 +1,4 @@
-//===- Ch2toyOps.cpp - Ch2toy dialect ops ---------------*- C++ -*-===//
+//===- Ch2toyDialect.h - Ch2toy dialect -----------------*- C++ -*-===//
 //
 // This file is licensed under the Apache License v2.0 with LLVM Exceptions.
 // See https://llvm.org/LICENSE.txt for license information.
@@ -6,9 +6,11 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "toy/Ch2ToyOps.h"
-#include "toy/Ch2ToyDialect.h"
-#include "mlir/IR/OpImplementation.h"
+#ifndef TOY_TOYDIALECT_H
+#define TOY_TOYDIALECT_H
 
-#define GET_OP_CLASSES
-#include "toy/ToyOps.cpp.inc"
+#include "mlir/IR/Dialect.h"
+
+#include "toy/Ch2ToyOpsDialect.h.inc"
+
+#endif // TOY_TOYDIALECT_H

@@ -9,7 +9,7 @@ add_mlir_dialect_library(MLIRCh2toy
         ${PROJECT_SOURCE_DIR}/include/toy
 
         DEPENDS
-        MLIRToyOpsIncGen
+        MLIRCh2ToyOpsIncGen
 
 	LINK_LIBS PUBLIC
 	MLIRIR

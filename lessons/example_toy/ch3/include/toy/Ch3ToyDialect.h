@@ -1,4 +1,4 @@
-//===- Ch2toyDialect.h - Ch2toy dialect -----------------*- C++ -*-===//
+//===- Ch3toyDialect.h - Ch3toy dialect -----------------*- C++ -*-===//
 //
 // This file is licensed under the Apache License v2.0 with LLVM Exceptions.
 // See https://llvm.org/LICENSE.txt for license information.
@@ -11,6 +11,6 @@
 
 #include "mlir/IR/Dialect.h"
 
-#include "toy/ToyOpsDialect.h.inc"
+#include "toy/Ch3ToyOpsDialect.h.inc"
 
 #endif // TOY_TOYDIALECT_H
