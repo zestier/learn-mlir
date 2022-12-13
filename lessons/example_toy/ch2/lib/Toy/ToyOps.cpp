@@ -11,4 +11,4 @@
 #include "mlir/IR/OpImplementation.h"
 
 #define GET_OP_CLASSES
-#include "toy/ToyOps.cpp.inc"
+#include "toy/Ch2ToyOps.cpp.inc"

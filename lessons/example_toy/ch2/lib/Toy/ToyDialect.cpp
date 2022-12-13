@@ -12,7 +12,7 @@
 using namespace mlir;
 using namespace mlir::toy;
 
-#include "toy/ToyOpsDialect.cpp.inc"
+#include "toy/Ch2ToyOpsDialect.cpp.inc"
 
 //===----------------------------------------------------------------------===//
 // Ch2toy dialect.
@@ -21,6 +21,6 @@ using namespace mlir::toy;
 void ToyDialect::initialize() {
   addOperations<
 #define GET_OP_LIST
-#include "toy/ToyOps.cpp.inc"
+#include "toy/Ch2ToyOps.cpp.inc"
       >();
 }
