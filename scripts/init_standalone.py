@@ -1,4 +1,4 @@
-import argparse, os, re, shutil
+import argparse, itertools, os, re, shutil
 
 def allowed_name(name):
     name = name.lower()
@@ -30,9 +30,13 @@ required.add_argument('-o', '--output', type=writable_dir_path, required=True)
 optional.add_argument('-i', '--input', type=readable_dir_path, default=os.path.expandvars('$LLVM_SOURCE_DIR/mlir/examples/standalone'))
 args = parser.parse_args()
 
+def capitalize_segments(input: str):
+    segments = (''.join(x) for _, x in itertools.groupby(input, key=str.isalpha))
+    return ''.join(map(str.capitalize, segments))
+
 def replace_name(input: str, oldname: str, newname: str):
     input = input.replace(oldname, newname)
-    input = input.replace(oldname.capitalize(), newname.capitalize())
+    input = input.replace(capitalize_segments(oldname), capitalize_segments(newname))
     input = input.replace(oldname.upper(), newname.upper())
     return input
 
