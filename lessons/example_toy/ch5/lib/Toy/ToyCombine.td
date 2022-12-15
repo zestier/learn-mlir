@@ -15,7 +15,7 @@
 #define TOY_COMBINE
 
 include "mlir/IR/PatternBase.td"
-include "toy/Ch4ToyOps.td"
+include "toy/Ch5ToyOps.td"
 
 /// Note: The DRR definition used for defining patterns is shown below:
 ///
