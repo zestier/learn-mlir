@@ -50,7 +50,7 @@ RUN mkdir ${LLVM_BUILD_DIR}                                                     
    && find . -type f \( -name 'llvm-lit' -or -name 'lit.site.cfg*' \) -exec cp --parents {} ${LLVM_BUILD_DIR} \;
 
 # Fix a shebang to work with the way python is actually installed
-RUN sed -i 's|#!/usr/bin/|#!/usr/bin/env |g' ${LLVM_BUILD_DIR}/bin/llvm-lit
+RUN sed -i '1 s|^#!/usr/bin/python|#!/usr/bin/env python|g' ${LLVM_BUILD_DIR}/bin/llvm-lit
 
 ###############################################################################
 # Python dependency builder
