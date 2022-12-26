@@ -2,9 +2,10 @@
 # LLVM Source
 ###############################################################################
 FROM alpine AS llvm-project-source
-RUN apk --no-cache add git
-RUN git clone --depth 1 --branch llvmorg-15.0.5 https://github.com/llvm/llvm-project.git /out
-RUN rm -rf out/.git
+RUN apk --no-cache add tar
+RUN                                                                                                \
+   wget https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-15.0.5.tar.gz -O -          \
+   | tar -xz --one-top-level=/out --strip-components=1
 
 ###############################################################################
 # MLIR Base
@@ -58,8 +59,8 @@ RUN sed -i '1 s|^#!/usr/bin/python|#!/usr/bin/env python|g' ${LLVM_BUILD_DIR}/bi
 FROM ubuntu AS python-dep-builder
 
 RUN apt-get update && apt-get -y install python3-venv
-RUN python3 -m venv /venv
-ENV PATH=/venv/bin:$PATH
+RUN python3 -m venv /out
+ENV PATH=/out/bin:$PATH
 
 # Actual deps
 RUN pip3 install lit
@@ -76,7 +77,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends                
 RUN chsh -s `which zsh` && echo "PROMPT='%~%# '" >> ~/.zshrc
 
 # Python dependencies
-COPY --from=python-dep-builder /venv /venv
+COPY --from=python-dep-builder /out /venv
 ENV PATH=/venv/bin:$PATH
 
 # LLVM/MLIR itself
