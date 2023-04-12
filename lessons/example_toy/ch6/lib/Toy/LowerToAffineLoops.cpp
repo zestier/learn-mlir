@@ -17,7 +17,7 @@
 #include "toy/Passes.h"
 
 #include "mlir/Dialect/Affine/IR/AffineOps.h"
-#include "mlir/Dialect/Arithmetic/IR/Arithmetic.h"
+#include "mlir/Dialect/Arith/IR/Arith.h"
 #include "mlir/Dialect/Func/IR/FuncOps.h"
 #include "mlir/Dialect/MemRef/IR/MemRef.h"
 #include "mlir/Pass/Pass.h"
@@ -177,7 +177,7 @@ struct ConstantOpLowering : public OpRewritePattern<toy::ConstantOp> {
       if (dimension == valueShape.size()) {
         rewriter.create<AffineStoreOp>(
             loc, rewriter.create<arith::ConstantOp>(loc, *valueIt++), alloc,
-            llvm::makeArrayRef(indices));
+            llvm::ArrayRef(indices));
         return;
       }
 
@@ -329,7 +329,7 @@ void ToyToAffineLoweringPass::runOnOperation() {
   // this lowering. In our case, we are lowering to a combination of the
   // `Affine`, `Arithmetic`, `Func`, and `MemRef` dialects.
   target
-      .addLegalDialect<AffineDialect, BuiltinDialect, arith::ArithmeticDialect,
+      .addLegalDialect<AffineDialect, BuiltinDialect, arith::ArithDialect,
                        func::FuncDialect, memref::MemRefDialect>();
 
   // We also define the Toy dialect as Illegal so that the conversion will fail

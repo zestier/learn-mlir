@@ -13,7 +13,7 @@ include "Ch1toy/Ch1toyDialect.td"
 include "mlir/Interfaces/InferTypeOpInterface.td"
 include "mlir/Interfaces/SideEffectInterfaces.td"
 
-def Ch1toy_FooOp : Ch1toy_Op<"foo", [NoSideEffect,
+def Ch1toy_FooOp : Ch1toy_Op<"foo", [Pure,
                                              SameOperandsAndResultType]> {
     let summary = "Illustrates how to define an operation.";
     let description = [{

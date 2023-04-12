@@ -35,13 +35,13 @@ struct ToyInlinerInterface : public DialectInlinerInterface {
 
   /// All operations within toy can be inlined.
   bool isLegalToInline(Operation *, Region *, bool,
-                       BlockAndValueMapping &) const final {
+                       IRMapping &) const final {
     return true;
   }
 
   // All functions within toy can be inlined.
   bool isLegalToInline(Region *, Region *, bool,
-                       BlockAndValueMapping &) const final {
+                       IRMapping &) const final {
     return true;
   }
 

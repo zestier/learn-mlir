@@ -16,16 +16,15 @@ include "mlir/IR/OpBase.td"
 //===----------------------------------------------------------------------===//
 
 def Ch1_Dialect : Dialect {
-    let name = "ch1";
-    let summary = "A ch1 out-of-tree MLIR dialect.";
-    let description = [{
-        This dialect is an example of an out-of-tree MLIR dialect designed to
-        illustrate the basic setup required to develop MLIR-based tools without
-        working inside of the LLVM source tree.
-    }];
-    let cppNamespace = "::mlir::ch1";
-
-  let emitAccessorPrefix = kEmitAccessorPrefix_Prefixed;
+  let name = "ch1";
+  let summary = "A ch1 out-of-tree MLIR dialect.";
+  let description = [{
+    This dialect is an example of an out-of-tree MLIR dialect designed to
+    illustrate the basic setup required to develop MLIR-based tools without
+    working inside of the LLVM source tree.
+  }];
+  let cppNamespace = "::mlir::ch1";
+  let useFoldAPI = kEmitFoldAdaptorFolder;
 }
 
 //===----------------------------------------------------------------------===//
@@ -33,6 +32,6 @@ def Ch1_Dialect : Dialect {
 //===----------------------------------------------------------------------===//
 
 class Ch1_Op<string mnemonic, list<Trait> traits = []> :
-        Op<Ch1_Dialect, mnemonic, traits>;
+  Op<Ch1_Dialect, mnemonic, traits>;
 
 #endif // CH1_DIALECT

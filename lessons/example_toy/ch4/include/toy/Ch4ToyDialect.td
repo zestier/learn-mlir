@@ -16,7 +16,7 @@ include "mlir/IR/OpBase.td"
 def Toy_Dialect : Dialect {
   let name = "toy";
   let cppNamespace = "::mlir::toy";
-  let emitAccessorPrefix = kEmitAccessorPrefix_Prefixed;
+  let useFoldAPI = kEmitFoldAdaptorFolder;
 }
 
 // Base class for toy dialect operations. This operation inherits from the base
@@ -25,6 +25,6 @@ def Toy_Dialect : Dialect {
 //   * The mnemonic for the operation, or the name without the dialect prefix.
 //   * A list of traits for the operation.
 class Toy_Op<string mnemonic, list<Trait> traits = []> :
-    Op<Toy_Dialect, mnemonic, traits>;
+  Op<Toy_Dialect, mnemonic, traits>;
 
 #endif // TOY_DIALECT

@@ -4,7 +4,7 @@
 FROM alpine AS llvm-project-source
 RUN apk --no-cache add tar
 RUN                                                                                                \
-   wget https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-15.0.5.tar.gz -O -          \
+   wget https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-16.0.1.tar.gz -O -          \
    | tar -xz --one-top-level=/out --strip-components=1
 
 ###############################################################################
@@ -42,16 +42,19 @@ RUN                                                                             
       -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DLLVM_ENABLE_LLD=ON                   \
       -DLLVM_INSTALL_UTILS=ON
 
-# CMake build
-RUN cmake --build /tmp/build --target install
-
-# Copy over output to where it belongs
-RUN mkdir ${LLVM_BUILD_DIR}                                                                        \
+# Copy over the non-install output we need. Conviently these files come from just the CMake generation.
+RUN mkdir -p ${LLVM_BUILD_DIR}                                                                     \
    && cd /tmp/build                                                                                \
    && find . -type f \( -name 'llvm-lit' -or -name 'lit.site.cfg*' \) -exec cp --parents {} ${LLVM_BUILD_DIR} \;
-
+   
 # Fix a shebang to work with the way python is actually installed
 RUN sed -i '1 s|^#!/usr/bin/python|#!/usr/bin/env python|g' ${LLVM_BUILD_DIR}/bin/llvm-lit
+
+# CMake build.
+# IMPORTANT: To avoid bloating the layer we delete when done. Because other steps may trigger copies
+# out of the build directory we need to ensure this is at the end.
+RUN cmake --build /tmp/build --target install                                                      \
+   && rm -rf /tmp/build
 
 ###############################################################################
 # Python dependency builder
